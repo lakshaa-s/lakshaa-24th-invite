@@ -23,9 +23,33 @@ Every guest-facing detail lives in `src/config.ts`:
 | `locationTeaser` | Shown to everyone |
 | `locationFull` | Only revealed after someone RSVPs "All in" |
 | `videoEmbedUrl` | Embed URL of an unlisted Vimeo, Mux or Cloudflare Stream video. Leave it empty and the player shows "Transmission incoming" |
-| `rsvpEndpoint` | Your Formspree endpoint. Make a free form at formspree.io, and each RSVP (name + All in/Fold) arrives in your inbox |
+| `rsvpEndpoint` | A Google Apps Script web app URL bound to the guest-list sheet. Each RSVP (timestamp, name, All in/Fold, contact) is appended as a row, and if `contact` looks like an email, the script emails the party details to it |
 
-Test one RSVP yourself after deploying. Formspree asks you to confirm the first submission.
+Test one RSVP yourself after deploying and check the row lands in the sheet — the request is sent `no-cors`, so the site can't confirm the write itself.
+
+### Apps Script (paste into Extensions → Apps Script on the sheet)
+
+```javascript
+function doPost(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+  const data = JSON.parse(e.postData.contents);
+  const contact = data.contact || '';
+  sheet.appendRow([new Date(), data.name, data.attending, contact]);
+
+  if (data.attending === 'All in' && contact.indexOf('@') !== -1 && data.details) {
+    MailApp.sendEmail({
+      to: contact,
+      subject: "Lakshaa's 24th — Casino Royale",
+      body: data.details,
+    });
+  }
+
+  return ContentService.createTextOutput(JSON.stringify({ ok: true }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+```
+
+Redeploy (Deploy → Manage deployments → edit → New version) after pasting this in, so the live URL picks up the change. Apps Script's free `MailApp` quota is 100 emails/day on a personal Gmail account — plenty for a guest list, but worth knowing if this URL is ever reused for something bigger. A phone number in `contact` is stored in the sheet for your reference but nothing is sent to it — see the project notes if you want to add real SMS/WhatsApp sending later, which needs a paid third-party account (e.g. Twilio).
 
 ## Deploy
 
@@ -46,7 +70,8 @@ src/
     SceneBoundary.tsx       falls back to the gradient if WebGL is unavailable
     VideoInvite.tsx         gold-framed video player
     Details.tsx             pointer-tilt playing cards
-    RsvpTable.tsx           felt table with flipping 3D chips, posts to Formspree
+    RsvpTable.tsx           felt table with flipping 3D chips, posts to a Google Apps Script endpoint
+    Reveal.tsx              scroll-triggered fade-in wrapper used across sections
 ```
 
 ## Notes

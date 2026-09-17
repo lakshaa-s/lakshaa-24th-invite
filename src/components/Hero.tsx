@@ -32,6 +32,12 @@ export default function Hero() {
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_60%,#2a0a10_0%,#050505_65%)]"
         aria-hidden="true"
       />
+      <div
+        className="text-gold pointer-events-none absolute inset-0 flex select-none items-center justify-center font-display text-[46vw] font-black leading-none opacity-[0.06] md:text-[26rem]"
+        aria-hidden="true"
+      >
+        LS
+      </div>
       <div className="absolute inset-0" aria-hidden="true">
         {ready && (
           <SceneBoundary>

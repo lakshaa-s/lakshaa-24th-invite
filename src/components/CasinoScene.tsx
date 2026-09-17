@@ -38,7 +38,7 @@ function canvasTexture(w: number, h: number, draw: (ctx: CanvasRenderingContext2
   return tex;
 }
 
-const SERIF = '"Bodoni Moda", Georgia, serif';
+const SERIF = '"Playfair Display", Georgia, serif';
 
 function drawWheelFace(ctx: CanvasRenderingContext2D) {
   const size = ctx.canvas.width;

@@ -12,8 +12,9 @@ export default function VideoInvite() {
         Ocean's 24
       </h2>
       <div className="[perspective:1400px]">
-        <div className="frame-gold shadow-[0_40px_80px_-20px_rgba(191,149,63,0.25)] transition-transform duration-700 [transform:rotateX(8deg)] hover:[transform:rotateX(0deg)]">
+        <div className="frame-gold video-glow transition-transform duration-700 [transform:rotateX(8deg)] hover:[transform:rotateX(0deg)]">
           <div className="crt-screen crt-flicker relative aspect-video overflow-hidden rounded-[0.9rem] bg-zinc-900">
+            <div className="sweep-light" aria-hidden="true" />
             <span className="pointer-events-none absolute left-4 top-3 z-10 flex items-center gap-1.5 font-mono text-[0.65rem] uppercase tracking-[0.15em] text-yellow-200/80">
               <span className="crt-dot h-1.5 w-1.5 rounded-full bg-red-500" aria-hidden="true" />
               CH 24 · LIVE
