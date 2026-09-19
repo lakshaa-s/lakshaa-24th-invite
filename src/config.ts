@@ -18,7 +18,7 @@ export const CONFIG = {
     { station: 'Edgware', line: 'Northern line', connection: '186 bus to Belmont Circle, 7 min walk from there' },
     { station: 'Canons Park', line: 'Jubilee line', connection: '186 bus to Belmont Circle, 7 min walk from there' },
   ],
-  dressCode: 'Black-tie inspired',
+  dressCode: 'Casino themed',
   donation: {
     charity: 'UNICEF UK',
     appeal: "Children in Gaza Crisis Appeal",

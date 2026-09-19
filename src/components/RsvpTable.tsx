@@ -77,6 +77,7 @@ export default function RsvpTable() {
   const saved = readSavedRsvp();
   const [name, setName] = useState(saved?.name ?? '');
   const [contact, setContact] = useState('');
+  const [plusOne, setPlusOne] = useState('');
   const [status, setStatus] = useState<Status>(saved?.answer ?? 'idle');
   const [flipping, setFlipping] = useState<Answer | null>(null);
   const [nameMissing, setNameMissing] = useState(false);
@@ -107,6 +108,7 @@ export default function RsvpTable() {
         name: name.trim(),
         attending: answer === 'yes' ? 'All in' : 'Fold',
         contact: contact.trim(),
+        plusOne: answer === 'yes' ? plusOne.trim() : '',
         // Apps Script emails this back to the guest if `contact` looks like an email.
         details: answer === 'yes' ? buildShareText() : '',
       }),
@@ -172,7 +174,7 @@ export default function RsvpTable() {
             </h3>
             {status === 'yes' ? (
               <>
-                <p className="mt-3 text-white/80">See you at the table, {name.trim().split(' ')[0]}.</p>
+                <p className="mt-3 text-white/80">See you at the table, {name.trim().split(' ')[0]}{plusOne.trim() && ` and ${plusOne.trim()}`}.</p>
                 {contact.includes('@') && (
                   <p className="mt-1 text-sm text-white/50">We've sent these details to {contact.trim()}.</p>
                 )}
@@ -263,6 +265,15 @@ export default function RsvpTable() {
               value={contact}
               onChange={(e) => setContact(e.target.value)}
               placeholder="Email or phone (optional)"
+              className="mt-3 w-full max-w-sm rounded-full border border-white/20 bg-black/50 px-6 py-3 text-center text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            />
+            <label htmlFor="rsvp-plusone" className="sr-only">Plus one's name</label>
+            <input
+              id="rsvp-plusone"
+              type="text"
+              value={plusOne}
+              onChange={(e) => setPlusOne(e.target.value)}
+              placeholder="Plus one's name (optional)"
               className="mt-3 w-full max-w-sm rounded-full border border-white/20 bg-black/50 px-6 py-3 text-center text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />
             <p className="mb-8 mt-2 h-5 text-sm text-yellow-300" role="alert">

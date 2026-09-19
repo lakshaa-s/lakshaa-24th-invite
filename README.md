@@ -23,7 +23,7 @@ Every guest-facing detail lives in `src/config.ts`:
 | `locationTeaser` | Shown to everyone |
 | `locationFull` | Only revealed after someone RSVPs "All in" |
 | `videoEmbedUrl` | Embed URL of an unlisted Vimeo, Mux or Cloudflare Stream video. Leave it empty and the player shows "Transmission incoming" |
-| `rsvpEndpoint` | A Google Apps Script web app URL bound to the guest-list sheet. Each RSVP (timestamp, name, All in/Fold, contact) is appended as a row, and if `contact` looks like an email, the script emails the party details to it |
+| `rsvpEndpoint` | A Google Apps Script web app URL bound to the guest-list sheet. Each RSVP (timestamp, name, All in/Fold, contact, plus one) is appended as a row, and if `contact` looks like an email, the script emails the party details to it |
 
 Test one RSVP yourself after deploying and check the row lands in the sheet — the request is sent `no-cors`, so the site can't confirm the write itself.
 
@@ -34,7 +34,7 @@ function doPost(e) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
   const data = JSON.parse(e.postData.contents);
   const contact = data.contact || '';
-  sheet.appendRow([new Date(), data.name, data.attending, contact]);
+  sheet.appendRow([new Date(), data.name, data.attending, contact, data.plusOne || '']);
 
   if (data.attending === 'All in' && contact.indexOf('@') !== -1 && data.details) {
     MailApp.sendEmail({
