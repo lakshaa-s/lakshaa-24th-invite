@@ -2,7 +2,9 @@ import Hero from './components/Hero';
 import VideoInvite from './components/VideoInvite';
 import Details from './components/Details';
 import RsvpTable from './components/RsvpTable';
+import Donate from './components/Donate';
 import Reveal from './components/Reveal';
+import { CONFIG } from './config';
 
 export default function App() {
   return (
@@ -12,10 +14,11 @@ export default function App() {
         <Reveal className="w-full"><VideoInvite /></Reveal>
         <Details />
         <Reveal className="flex w-full justify-center"><RsvpTable /></Reveal>
+        <Reveal className="flex w-full justify-center"><Donate /></Reveal>
         <Reveal>
           <footer className="text-center text-sm text-zinc-500">
             <p className="font-display text-lg italic text-zinc-400">The house always wins.</p>
-            <p>The house is also providing drinks.</p>
+            <p>{CONFIG.bringNote}</p>
           </footer>
         </Reveal>
       </div>

@@ -42,6 +42,7 @@ function buildShareText() {
     `📅 ${CONFIG.date}, ${CONFIG.time}`,
     `📍 ${CONFIG.locationFull}`,
     `🖤 ${CONFIG.dressCode} — bring your best poker face`,
+    `🍸 ${CONFIG.bringNote}`,
     '',
     '🚕 Getting there:',
     ...transportLines(),
@@ -53,7 +54,7 @@ function buildShareText() {
 function buildInviteIcs() {
   const start = new Date(CONFIG.eventStartUTC);
   const end = new Date(start.getTime() + CONFIG.eventDurationHours * 60 * 60 * 1000);
-  const description = ['Casino Royale night.', '', 'Getting there:', ...transportLines()].join('\n');
+  const description = ['Casino Royale night.', CONFIG.bringNote, '', 'Getting there:', ...transportLines()].join('\n');
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',

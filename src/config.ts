@@ -19,6 +19,12 @@ export const CONFIG = {
     { station: 'Canons Park', line: 'Jubilee line', connection: '186 bus to Belmont Circle, 7 min walk from there' },
   ],
   dressCode: 'Black-tie inspired',
+  donation: {
+    charity: 'UNICEF UK',
+    appeal: "Children in Gaza Crisis Appeal",
+    url: 'https://www.unicef.org.uk/donate/children-in-gaza-crisis-appeal/',
+  },
+  bringNote:'Bring your own drinks. Lakshaa is providing food and mixers.',
   // Embed URL from an unlisted Vimeo, Mux or Cloudflare Stream video, e.g.
   // 'https://player.vimeo.com/video/123456789?autoplay=1'
   videoEmbedUrl: 'https://www.youtube.com/embed/8Tq4T2bG2BE?autoplay=1&rel=0',
