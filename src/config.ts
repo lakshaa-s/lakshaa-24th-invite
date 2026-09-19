@@ -21,7 +21,7 @@ export const CONFIG = {
   dressCode: 'Black-tie inspired',
   // Embed URL from an unlisted Vimeo, Mux or Cloudflare Stream video, e.g.
   // 'https://player.vimeo.com/video/123456789?autoplay=1'
-  videoEmbedUrl: '',
+  videoEmbedUrl: 'https://www.youtube.com/embed/8Tq4T2bG2BE?autoplay=1&rel=0',
   // Google Apps Script web app URL (appends each RSVP as a row in the sheet)
   rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbwPCq5Qvo6CexA0sHmbsDe-yHqzQi1S0KodlrX0pKojw3K-IG_HkOS2ALvZMyvbJC7l/exec',
 };
