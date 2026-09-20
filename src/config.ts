@@ -19,6 +19,31 @@ export const CONFIG = {
     { station: 'Canons Park', line: 'Jubilee line', connection: '186 bus to Belmont Circle, 7 min walk from there' },
   ],
   dressCode: 'Casino themed',
+  // Photos live in public/dress-inspo/. Each button opens its set in a viewer.
+  dressInspo: [
+    {
+      label: 'Inspo for her',
+      photos: [
+        { file: 'her-1.jpg', alt: 'Black halter dress with a cream fur stole and sheer black gloves' },
+        { file: 'her-2.jpg', alt: 'Strapless black gown with a black feather wrap and pearl necklace' },
+      ],
+    },
+    {
+      label: 'Inspo for him',
+      photos: [
+        { file: 'him-1.jpg', alt: 'Satin brown shirt with wide black trousers against a red backdrop' },
+        { file: 'him-2.jpg', alt: 'Collage of men in dark suits and tailoring' },
+        { file: 'him-3.jpg', alt: 'Navy blazer with a striped open-collar shirt' },
+      ],
+    },
+    {
+      label: 'Casino mood boards',
+      photos: [
+        { file: 'mood-1.jpg', alt: 'Casino mood board with tuxedos, evening gowns and a chandelier' },
+        { file: 'mood-2.jpg', alt: 'Casino Royale mood board of black and red gowns, fur stoles and gloves' },
+      ],
+    },
+  ],
   donation: {
     charity: 'UNICEF UK',
     appeal: "Children in Gaza Crisis Appeal",
